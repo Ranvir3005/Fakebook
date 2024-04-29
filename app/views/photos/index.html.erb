@@ -1,0 +1,108 @@
+<h1 style="text-align: center;">Posts &#x1F600;</h1>
+
+<div id="posts-container">
+  <% @photos.each do |photo| %>
+    <div class="post-container">
+      <div class="post">
+        <div class="post-user">
+          <% if photo.user.present? && photo.user.avatar.attached? %>
+            <%= image_tag(photo.user.avatar, style: "width: 40px; height: 40px; border-radius: 50%;") %>
+          <% else %>
+            <!-- Handle case where user or avatar is missing -->
+            <!-- You can display a default avatar image here -->
+          <% end %>
+          <span class="username"><%= photo.user.username if photo.user.present? %></span>
+        </div>
+        <h2 class="post-title"><%= photo.title %></h2>
+        <div class="post-image">
+          <%= image_tag(photo.image, style: "width:auto ; height:100px") %>
+        </div>
+        <div class="post-body">
+          <p><%= photo.body %></p>
+        </div>
+        <div class="post-actions">
+          <%= link_to "Show this post", photo, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+/* Assuming this is your styles.css or styles.scss file */
+
+#posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px; /* Add space above the first post */
+}
+
+.post-container {
+  margin-bottom: 20px; /* Add space between posts */
+}
+
+.post {
+  width: 400px; /* Adjust the width as needed for your layout */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #fff;
+}
+
+.post-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333; /* Adjust to match your design */
+}
+
+.post-image {
+  margin-bottom: 15px;
+}
+
+.post-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.post-body p {
+  margin-bottom: 10px;
+}
+
+.post-actions {
+  margin-top: 10px;
+}
+
+.post-user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.username {
+  margin-left: 10px;
+}
+
+.new-post-link {
+  margin-top: 20px; /* Add space between posts and "New post" link */
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #4267B2; /* Facebook blue */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #385898; /* Darker shade of blue on hover */
+}
+
+</style>
